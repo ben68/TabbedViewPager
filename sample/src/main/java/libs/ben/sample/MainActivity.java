@@ -1,90 +1,42 @@
 package libs.ben.sample;
 
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.Arrays;
-import java.util.List;
-
-import libs.ben.tvp.TabbedViewPagerAdapter;
-import libs.ben.tvp.TabbedViewPagerWithAppBarActivity;
 
 
-public class MainActivity extends TabbedViewPagerWithAppBarActivity {
-
-    private final CharSequence[] titles = {
-            "首頁",
-            "熱門文章",
-            "分類瀏覽",
-            "設定"
-    };
-
-    @Override
-    protected List<CharSequence> getTitles() {
-        return Arrays.asList(titles);
-    }
-
-    @Override
-    protected List<CharSequence> getIconTitles() {
-        final CharSequence[] iconTitles = {
-                getIconTitleFromResource(android.R.drawable.ic_menu_add),
-                getIconTitleFromResource(android.R.drawable.ic_menu_agenda),
-                getIconTitleFromResource(android.R.drawable.ic_menu_always_landscape_portrait),
-                getIconTitleFromResource(android.R.drawable.ic_menu_call),
-        };
-        return Arrays.asList(iconTitles);
-    }
-
-    @Override
-    protected List<CharSequence> getSelectedIconTitles() {
-        final CharSequence[] selectedIconTitles = {
-                getIconTitleFromResource(android.R.drawable.ic_menu_delete),
-                getIconTitleFromResource(android.R.drawable.ic_menu_camera),
-                getIconTitleFromResource(android.R.drawable.ic_menu_close_clear_cancel),
-                getIconTitleFromResource(android.R.drawable.ic_menu_compass),
-        };
-        return Arrays.asList(selectedIconTitles);
-    }
-
-    @Override
-    protected PagerAdapter getAdapter() {
-        List<CharSequence> titles = getIconTitles();
-        if(titles == null)
-            titles = getTitles();
-        PagerAdapter adapter = new TabbedViewPagerAdapter(titles){
-            /**
-             * Instantiate the {@link View} which should be displayed at {@code position}. Here we
-             * inflate a layout from the apps resources and then change the text view to signify the position.
-             */
-            @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                // Inflate a new layout from our resources
-                View view = getLayoutInflater().inflate(R.layout.pager_item,
-                        container, false);
-                // Add the newly created View to the ViewPager
-                container.addView(view);
-
-                // Retrieve a TextView from the inflated View, and update it's text
-                TextView title = (TextView) view.findViewById(R.id.item_title);
-                title.setText(String.valueOf(position + 1));
-
-//            Log.i(LOG_TAG, "instantiateItem() [position: " + position + "]");
-
-                // Return the View
-                return view;
-            }
-        };
-        return adapter;
-    }
+public class MainActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setListAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"text title", "icon title"})));
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                switch (position){
+                    case 0:
+                        intent.setClass(MainActivity.this, TextTitleActivity.class);
+                        break;
+                    case 1:
+                        intent.setClass(MainActivity.this, IconTitleActivity.class);
+                        break;
+                    default:
+                }
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
