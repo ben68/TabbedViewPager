@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TabbedViewPager" parent="Theme.TabbedViewPager.Base">
+        <item name="android:navigationBarColor">@color/navigation_bar_color</item>
+    </style>
+    <style name="Theme.TabbedViewPager.Light" parent="Theme.TabbedViewPager.Base.Light">
+        <item name="android:navigationBarColor">@color/navigation_bar_color</item>
+    </style>
+</resources>
