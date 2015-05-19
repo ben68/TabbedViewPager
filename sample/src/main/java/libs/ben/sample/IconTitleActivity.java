@@ -30,10 +30,10 @@ public class IconTitleActivity extends TabbedViewPagerWithAppBarActivity {
     protected List<CharSequence> getIconTitles() {
         if(iconTitles == null) {
             CharSequence[] icons = {
-                    getIconTitleFromResource(android.R.drawable.ic_menu_add),
-                    getIconTitleFromResource(android.R.drawable.ic_menu_agenda),
-                    getIconTitleFromResource(android.R.drawable.ic_menu_always_landscape_portrait),
-                    getIconTitleFromResource(android.R.drawable.ic_menu_call),
+                    getIconTitleFromResource(R.mipmap.ic_action_person_normal),
+                    getIconTitleFromResource(R.mipmap.ic_action_person_normal),
+                    getIconTitleFromResource(R.mipmap.ic_action_person_normal),
+                    getIconTitleFromResource(R.mipmap.ic_action_person_normal),
             };
             iconTitles = Arrays.asList(icons);
         }
@@ -45,10 +45,10 @@ public class IconTitleActivity extends TabbedViewPagerWithAppBarActivity {
     protected List<CharSequence> getSelectedIconTitles() {
         if(selectedIconTitles == null) {
             CharSequence[] icons = {
-                    getIconTitleFromResource(android.R.drawable.ic_menu_delete),
-                    getIconTitleFromResource(android.R.drawable.ic_menu_camera),
-                    getIconTitleFromResource(android.R.drawable.ic_menu_close_clear_cancel),
-                    getIconTitleFromResource(android.R.drawable.ic_menu_compass),
+                    getIconTitleFromResource(R.mipmap.ic_action_person),
+                    getIconTitleFromResource(R.mipmap.ic_action_person),
+                    getIconTitleFromResource(R.mipmap.ic_action_person),
+                    getIconTitleFromResource(R.mipmap.ic_action_person),
             };
             selectedIconTitles = Arrays.asList(icons);
         }

@@ -53,6 +53,9 @@ public abstract class TabbedViewPagerWithAppBarActivity extends ActionBarActivit
         if(getIconTitles()!=null)
             bar.setTitle(getTitles().get(0));
         setSupportActionBar(bar);
+        if(getSupportParentActivityIntent()!=null)
+            getSupportActionBar()
+                    .setDisplayHomeAsUpEnabled(true);
 
         // BEGIN_INCLUDE (setup_viewpager)
         // Get the ViewPager and set it's PagerAdapter so that it can display items
