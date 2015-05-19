@@ -4,17 +4,20 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
-import android.util.Log;
 
 import java.util.List;
 
+import libs.ben.tvp.SlidingTabLayout.TabColorizer;
 
-public abstract class TabbedViewPagerWithAppBarActivity extends ActionBarActivity {
+public abstract class TabbedViewPagerWithAppBarActivity
+        extends ActionBarActivity
+        implements OnPageChangeListener {
 
     /**
      * A custom {@link ViewPager} title strip which looks much like Tabs present in Android v4.0 and
@@ -40,6 +43,22 @@ public abstract class TabbedViewPagerWithAppBarActivity extends ActionBarActivit
         ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
         sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return sb;
+    }
+
+    protected TabColorizer getTabColorizer(){
+        return new TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tab_bar_indicator_color);
+            }
+
+            @Override
+            public int getDividerColor(int position) {
+                if (getIconTitles() != null)
+                    return getResources().getColor(R.color.tab_bar_color);
+                else return getResources().getColor(R.color.tab_bar_indicator_color);
+            }
+        };
     }
 
     @Override
@@ -68,45 +87,35 @@ public abstract class TabbedViewPagerWithAppBarActivity extends ActionBarActivit
         // it's PagerAdapter set.
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
-        mSlidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tab_bar_indicator_color);
-            }
-
-            @Override
-            public int getDividerColor(int position) {
-                if(getIconTitles()!=null)
-                    return getResources().getColor(R.color.tab_bar_color);
-                else return getResources().getColor(R.color.tab_bar_indicator_color);
-            }
-        });
+        mSlidingTabLayout.setCustomTabColorizer(getTabColorizer());
         mSlidingTabLayout.setViewPager(mViewPager);
-        mSlidingTabLayout.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            private int selectedPostion=0;
-            @Override
-            public void onPageSelected(int position) {
-                if (getIconTitles() != null) {
-                    mSlidingTabLayout
-                            .setTabeTitle(position, getSelectedIconTitles().get(position));
-                    mSlidingTabLayout
-                            .setTabeTitle(selectedPostion, getIconTitles().get(selectedPostion));
-                    selectedPostion = position;
-
-                    getSupportActionBar()
-                            .setTitle(getTitles().get(position));
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+        mSlidingTabLayout.setOnPageChangeListener(this);
+        if(getSelectedIconTitles()!=null)
+            mSlidingTabLayout.setTabTitle(0, getSelectedIconTitles().get(0));
         // END_INCLUDE (setup_slidingtablayout)
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
+    private int selectedPostion=0;
+    @Override
+    public void onPageSelected(int position) {
+        if (getIconTitles() == null || getSelectedIconTitles() == null)
+            return;
+
+        mSlidingTabLayout
+                .setTabTitle(position, getSelectedIconTitles().get(position));
+        mSlidingTabLayout
+                .setTabTitle(selectedPostion, getIconTitles().get(selectedPostion));
+        selectedPostion = position;
+        getSupportActionBar()
+                .setTitle(getTitles().get(position));
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
     }
 
 }

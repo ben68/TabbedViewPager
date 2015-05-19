@@ -212,7 +212,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
     }
 
-    public void setTabeTitle(int position, CharSequence title){
+    public void setTabTitle(int position, CharSequence title){
         TextView v = (TextView) mTabStrip.getChildAt(position);
         v.setText(title);
     }
