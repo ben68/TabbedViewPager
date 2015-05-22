@@ -20,4 +20,16 @@ repositories {
 }
 ```
 ## 使用 - Usage
+
+colors.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="status_bar_color">#ffff0000</color>
+    <color name="app_bar_color">@color/status_bar_color</color>
+    <color name="tab_bar_color">@color/status_bar_color</color>
+    <color name="navigation_bar_color">@color/status_bar_color</color>
+    <color name="tab_bar_indicator_color">#ffffffff</color>
+</resources>
+```
 詳細使用範例請參考 sample module
