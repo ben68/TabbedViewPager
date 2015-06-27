@@ -31,7 +31,7 @@ repositories {
     <color name="tab_bar_indicator_color">#ffffffff</color>
     <color name="window_background_color">#ffffffff</color>
     
-    <dimen name="tabbar_elevation">3dp</dimen>
+    <dimen name="tabbar_elevation_height">3dp</dimen>
 </resources>
 ```
 詳細使用範例請參考 sample module
