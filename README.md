@@ -9,7 +9,7 @@ AppBar + SlidingTabLayout + ViewPager
 在 build.gradle 的 dependencies 中加入
 ```gradle
 dependencies{
-  compile 'libs.ben:tabbed-viewpager:1.1.1'
+  compile 'libs.ben:tabbed-viewpager:1.2.0'
 }
 ```
 
@@ -21,7 +21,6 @@ repositories {
 ```
 ## 使用 - Usage
 
-colors.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -31,6 +30,8 @@ colors.xml
     <color name="navigation_bar_color">@color/status_bar_color</color>
     <color name="tab_bar_indicator_color">#ffffffff</color>
     <color name="window_background_color">#ffffffff</color>
+    
+    <dimen name="tabbar_elevation">3dp</dimen>
 </resources>
 ```
 詳細使用範例請參考 sample module
