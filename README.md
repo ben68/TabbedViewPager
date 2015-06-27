@@ -9,7 +9,7 @@ AppBar + SlidingTabLayout + ViewPager
 在 build.gradle 的 dependencies 中加入
 ```gradle
 dependencies{
-  compile 'libs.ben:tabbed-viewpager:1.0.1'
+  compile 'libs.ben:tabbed-viewpager:1.1.1'
 }
 ```
 
