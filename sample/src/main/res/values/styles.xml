@@ -1,6 +1,5 @@
 <resources>
     <style name="BaseAppTheme" parent="Theme.TabbedViewPager"></style>
-    <style name="AppTheme" parent="BaseAppTheme">
-    </style>
+    <style name="AppTheme" parent="BaseAppTheme"></style>
 
 </resources>

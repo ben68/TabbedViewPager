@@ -1,11 +1,12 @@
 package libs.ben.tvp;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -16,7 +17,7 @@ import java.util.List;
 import libs.ben.tvp.SlidingTabLayout.TabColorizer;
 
 public abstract class TabbedViewPagerWithAppBarActivity
-        extends ActionBarActivity
+        extends AppCompatActivity
         implements OnPageChangeListener {
 
     /**
@@ -37,7 +38,10 @@ public abstract class TabbedViewPagerWithAppBarActivity
     }
 
     protected CharSequence getIconTitleFromResource(int resourceId){
-        Drawable image = getResources().getDrawable(resourceId);
+        Drawable image;
+        if(Build.VERSION.SDK_INT<21)
+            image=getResources().getDrawable(resourceId);
+         else image=getResources().getDrawable(resourceId, getTheme());
         image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
         SpannableString sb = new SpannableString(" ");
         ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);

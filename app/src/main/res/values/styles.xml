@@ -1,9 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Theme.TabbedViewPager.Base" parent="Theme.AppCompat">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="Theme.TabbedViewPager.Base" parent="Theme.AppCompat.NoActionBar">
         <!-- status bar color -->
         <item name="colorPrimaryDark">@color/status_bar_color</item>
         <!-- actionbar color -->
@@ -11,9 +9,7 @@
         <!-- window color -->
         <!--<item name="android:windowBackground">@color/pixbg</item>-->
     </style>
-    <style name="Theme.TabbedViewPager.Base.Light" parent="Theme.AppCompat.Light">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="Theme.TabbedViewPager.Base.Light" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- status bar color -->
         <item name="colorPrimaryDark">@color/status_bar_color</item>
         <!-- actionbar color -->

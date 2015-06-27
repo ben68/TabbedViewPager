@@ -61,6 +61,7 @@ public class IconTitleActivity extends TabbedViewPagerWithAppBarActivity {
         if(titles == null)
             titles = getTitles();
         PagerAdapter adapter = new TabbedViewPagerAdapter(titles){
+
             /**
              * Instantiate the {@link View} which should be displayed at {@code position}. Here we
              * inflate a layout from the apps resources and then change the text view to signify the position.
